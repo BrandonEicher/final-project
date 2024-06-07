@@ -1,1 +1,10 @@
-<p>x-feed works!</p>
+<h1>X Feed</h1>
+<a [routerLink]="['new']">Create New X</a>
+<div *ngIf="xList">
+    <div *ngFor="let x of xList">
+        <h2>{{x.username}} - ${{x.text}}</h2>
+        <a [routerLink]="['/x', x.xId]">Edit</a>
+        <button (click)="deleteX(x.xId)">Delete</button>
+        <hr>
+    </div>
+</div>

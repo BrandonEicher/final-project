@@ -6,8 +6,10 @@ import { AppComponent } from './app.component';
 import { SignUpComponent } from './components/sign-up/sign-up.component';
 import { SignInComponent } from './components/sign-in/sign-in.component';
 import { XFeedComponent } from './components/x-feed/x-feed.component';
-import { XNewComponent } from './components/x-new/x-new.component';
 import { XEditComponent } from './components/x-edit/x-edit.component';
+import { HttpClientModule } from '@angular/common/http';
+import { FormsModule } from '@angular/forms';
+import { RouterModule } from '@angular/router';
 
 @NgModule({
   declarations: [
@@ -15,12 +17,14 @@ import { XEditComponent } from './components/x-edit/x-edit.component';
     SignUpComponent,
     SignInComponent,
     XFeedComponent,
-    XNewComponent,
     XEditComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    HttpClientModule,
+    FormsModule,
+    RouterModule
   ],
   providers: [
     provideClientHydration()

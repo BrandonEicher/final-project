@@ -1,1 +1,8 @@
-<p>x-edit works!</p>
+<h1>Edit X</h1>
+<form (ngSubmit)="updateX()">
+  <div>
+    <label for="text">Text:</label>
+    <textarea id="text" [(ngModel)]="x.text" name="text" required></textarea>
+  </div>
+  <button type="submit">Update X</button>
+</form>
