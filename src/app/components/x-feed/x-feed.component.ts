@@ -22,6 +22,7 @@ export class XFeedComponent implements OnInit {
   }
 
   createX() {
+    this.newX.date = new Date();
     this.xService.createX(this.newX).subscribe(() => {
       window.alert("Created X Successfully");
       this.router.navigate(['x']);

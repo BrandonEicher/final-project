@@ -2,13 +2,13 @@
 
 <div>
   <input type="text" [(ngModel)]="newX.text" placeholder="Enter new X text">
-  <input type="username" [(ngModel)]="newX.username" placeholder="username">
   <button (click)="createX()">Create New X</button>
 </div>
 
 <div *ngIf="xList">
   <div *ngFor="let x of xList">
-    <h2>{{ x.username }} - {{ x.text }}</h2>
+    <h2>{{ x.text }}</h2>
+    <p>- {{ x.username }} - {{ x.date | date:'short' }}</p>
     <a [routerLink]="['/x', x.xId]">Edit</a>
     <button (click)="deleteX(x.xId)">Delete</button>
     <hr>
