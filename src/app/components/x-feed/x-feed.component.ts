@@ -11,12 +11,25 @@ import { Router } from '@angular/router';
 export class XFeedComponent implements OnInit {
 
   xList: X[] = [];
+  newX: X = new X();
 
   constructor(private xService: XService, private router: Router) { }
 
   ngOnInit(): void {
     this.xService.getAllX().subscribe(x => {
       this.xList = x;
+    });
+  }
+
+  createX() {
+    this.xService.createX(this.newX).subscribe(() => {
+      window.alert("Created X Successfully");
+      this.router.navigate(['x']);
+    }, error => {
+      console.log('Error: ', error)
+      if (error.status === 401 || error.status === 403) {
+        this.router.navigate(['signin']);
+      }
     });
   }
 

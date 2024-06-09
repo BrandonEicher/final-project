@@ -4,10 +4,10 @@ export class X {
     username?: string;
     date?: number;
 
-    constructor(id?: string, text?: string, username?: string, date?: number) {
-        this.xId = id;
+    constructor(text?: string, username?: string, id?: string, date?: number) {
         this.text = text;
         this.username = username;
+        this.xId = id;
         this.date = date;
     }
 }
