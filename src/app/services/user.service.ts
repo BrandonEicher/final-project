@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { User } from '../models/user';
 import { tap } from 'rxjs';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -23,7 +24,18 @@ export class UserService {
 
     return this.http.get(`${this.baseURL}/login`,  { params: queryParams, responseType: 'text' })
       .pipe(tap((response: any) => {
-        localStorage.setItem('myX', response);
+        if (typeof localStorage !== 'undefined') {
+          localStorage.setItem('authToken', response);
+        }
       }));
+  }
+  
+  logout(): void {
+    localStorage.removeItem('authToken');
+    localStorage.removeItem('username');
+  }
+
+  getUserProfile(username: string): Observable<User> {
+    return this.http.get<User>(`${this.baseURL}/profile/${username}`);
   }
 }

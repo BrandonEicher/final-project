@@ -8,9 +8,7 @@
 <div *ngIf="xList">
   <div *ngFor="let x of xList">
     <h2>{{ x.text }}</h2>
-    <p>- {{ x.username }} - {{ x.date | date:'short' }}</p>
-    <a [routerLink]="['/x', x.xId]">Edit</a>
-    <button (click)="deleteX(x.xId)">Delete</button>
+    <p [routerLink]="['/user', x.username]"> {{ x.username }} - {{ x.date | date:'short' }}</p>
     <hr>
   </div>
 </div>

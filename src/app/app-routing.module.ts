@@ -4,6 +4,7 @@ import { SignInComponent } from './components/sign-in/sign-in.component';
 import { SignUpComponent } from './components/sign-up/sign-up.component';
 import { XFeedComponent } from './components/x-feed/x-feed.component';
 import { XEditComponent } from './components/x-edit/x-edit.component';
+import { UserHomeComponent } from './components/user-home/user-home.component';
 
 const routes: Routes = [
   { 
@@ -26,6 +27,10 @@ const routes: Routes = [
   {
     path: "x/:id",
     component: XEditComponent
+  },
+  { 
+    path: "user/:username", 
+    component: UserHomeComponent 
   },
 ];
 

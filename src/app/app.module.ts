@@ -7,9 +7,12 @@ import { SignUpComponent } from './components/sign-up/sign-up.component';
 import { SignInComponent } from './components/sign-in/sign-in.component';
 import { XFeedComponent } from './components/x-feed/x-feed.component';
 import { XEditComponent } from './components/x-edit/x-edit.component';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
+import { UserHomeComponent } from './components/user-home/user-home.component';
+import { AuthInterceptor } from './services/auth.interceptor';
+
 
 @NgModule({
   declarations: [
@@ -17,7 +20,8 @@ import { RouterModule } from '@angular/router';
     SignUpComponent,
     SignInComponent,
     XFeedComponent,
-    XEditComponent
+    XEditComponent,
+    UserHomeComponent
   ],
   imports: [
     BrowserModule,
@@ -27,7 +31,8 @@ import { RouterModule } from '@angular/router';
     RouterModule
   ],
   providers: [
-    provideClientHydration()
+    provideClientHydration(),
+    { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true }
   ],
   bootstrap: [AppComponent]
 })

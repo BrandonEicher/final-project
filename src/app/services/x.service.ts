@@ -8,7 +8,7 @@ import { Observable } from 'rxjs';
 })
 export class XService {
   baseURL: string = "http://localhost:5087/api/x";
-  tokenKey: string = "myX";
+  tokenKey: string = "authToken";
 
   constructor(private http: HttpClient) { }
 
@@ -33,6 +33,15 @@ export class XService {
     });
     return this.http.put<void>(`${this.baseURL}/${updatedX.xId}`, updatedX, { headers: reqHeaders });
   }
+
+  getUserPosts(username: string): Observable<X[]> {
+    const token = localStorage.getItem(this.tokenKey);
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${token}`
+    });
+
+    return this.http.get<X[]>(`${this.baseURL}/user/${username}`, { headers });
+  } 
 
   deleteX(xId: string): Observable<void> {
     let reqHeaders = new HttpHeaders({

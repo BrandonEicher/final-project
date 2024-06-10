@@ -22,8 +22,15 @@ export class XFeedComponent implements OnInit {
   }
 
   createX() {
-    this.newX.date = new Date();
-    this.xService.createX(this.newX).subscribe(() => {
+    const now = new Date();
+  
+    const estOffset = +4 * 60; 
+    const pstOffset = +8 * 60; 
+    const offsetDifference = estOffset - pstOffset;
+    const estDate = new Date(now.getTime() + offsetDifference * 60 * 1000);
+  
+    this.newX.date = estDate;
+        this.xService.createX(this.newX).subscribe(() => {
       window.alert("Created X Successfully");
       this.router.navigate(['x']);
     }, error => {
